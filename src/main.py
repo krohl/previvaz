@@ -49,7 +49,8 @@ def main(event):
 
 if __name__ == "__main__":
     event = {
-        "id_rodada_smap": 1,
+        'id_rodada_smap': 1,
         'data_rodada': '2023-08-16',
+        'data_deck_smap': '2023-08-17'
     }
     main(event)

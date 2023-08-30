@@ -34,6 +34,6 @@ class PrevivazEntradaService:
         with open('vazoes_entrada.txt', 'w') as f:
             for vazao_semanal in vazoes_semanais:
                 f.write(
-                    f'{vazao_semanal.id_usina} {vazao_semanal.op_week.ano} '\
+                    f'{vazao_semanal.id_usina} {vazao_semanal.op_week.ano} '
                     f'{vazao_semanal.op_week.numero_semana_previvaz} {round(vazao_semanal.valor)}\n'
                 )

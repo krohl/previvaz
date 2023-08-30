@@ -34,8 +34,11 @@ class SemanaOperativa:
         Returns:
             int: número da semana no ano
         """
-        pass
+        return self.end_date.isocalendar()[1]
 
+    @property
+    def ano(self) -> int:
+        return self.end_date.year
 
     @classmethod
     def from_date(cls, ref_date: date) -> SemanaOperativa:
@@ -43,7 +46,29 @@ class SemanaOperativa:
             ref_date -= timedelta(days=1)
         return SemanaOperativa(ref_date)
 
-    @property
-    def ano(self) -> int:
-        return self.end_date.year
 
+    def next(self, quantidade_semanas=1) -> SemanaOperativa:
+        """Retorna a próxima SemanaOperativa
+
+        Returns:
+            SemanaOperativa: Próxima semana operativa
+        """
+        end_date = self.end_date
+        for _ in range(quantidade_semanas):
+            semana_operativa = SemanaOperativa.from_date(end_date + timedelta(days=1))
+            end_date = semana_operativa.end_date
+
+        return semana_operativa
+    
+    def previous(self, quantidade_semanas=1) -> SemanaOperativa:
+        """Retorna a SemanaOperativa anterior
+
+        Returns:
+            SemanaOperativa: Semana operativa anterior
+        """
+        start_date = self.start_date
+        for _ in range(quantidade_semanas):
+            semana_operativa = SemanaOperativa.from_date(start_date - timedelta(days=1))
+            start_date = semana_operativa.start_date
+
+        return semana_operativa
